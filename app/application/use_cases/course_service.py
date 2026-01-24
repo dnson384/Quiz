@@ -23,6 +23,8 @@ from app.application.dtos.course_dto import (
     DTONewCourseDetailInput,
     DTONewCourseInput,
     DTOCourseOutput,
+    DTOTestQuestion,
+    DTOCourseTestOutput,
     DTOCourseDetailOutput,
     DTOCourseWithDetails,
     DTOUpdateCourseRequest,
@@ -35,7 +37,7 @@ from app.application.exceptions import (
 )
 
 
-class CourseWithDetails(TypedDict):
+class CourseWithDetailsResponse(TypedDict):
     course: CourseOutput
     course_detail: List[CourseDetailOutput]
 
@@ -77,26 +79,47 @@ class CourseService:
 
     def get_course_detail_by_id(self, course_id: UUID):
         try:
-            course_detail_result = self.course_repo.get_course_detail_by_id(
-                course_id=course_id
+            course_detail_result: CourseWithDetailsResponse = (
+                self.course_repo.get_course_detail_by_id(course_id=course_id)
             )
 
             return course_detail_result
         except CoursesNotFoundErrorDomain as e:
             raise CourseNotFoundError(str(e))
 
-    def create_question(self, current_course, course_detail):
-        pool = [item for item in course_detail if item != current_course]
-        random_items = random.sample(pool, 3)
+    def create_question(
+        self,
+        current_term: CourseDetailOutput,
+        course_detail: List[CourseDetailOutput],
+    ):
+        pool: List[CourseDetailOutput] = [
+            item for item in course_detail if item != current_term
+        ]
+        random_items: List[CourseDetailOutput] = random.sample(pool, 3)
 
-        return {"question": current_course, "options": random_items}
+        current_term_dto = DTOCourseDetailOutput(
+            course_detail_id=current_term.course_detail_id,
+            term=current_term.term,
+            definition=current_term.definition,
+        )
+        random_items_dto: List[DTOCourseDetailOutput] = [
+            DTOCourseDetailOutput(
+                course_detail_id=item.course_detail_id,
+                term=item.term,
+                definition=item.definition,
+            )
+            for item in random_items
+        ]
+
+        return DTOTestQuestion(question=current_term_dto, options=random_items_dto)
 
     def get_course_learn_by_id(self, course_id: str):
         try:
             response = self.get_course_detail_by_id(course_id)
             course = response.get("course")
             course_detail = response.get("course_detail")
-            questions = list(
+
+            questions: List[DTOTestQuestion] = list(
                 map(
                     lambda current_course: self.create_question(
                         current_course, course_detail
@@ -104,8 +127,16 @@ class CourseService:
                     course_detail,
                 )
             )
+            course_dto: DTOCourseOutput = DTOCourseOutput(
+                course_id=course.course_id,
+                course_name=course.course_name,
+                author_avatar_url=course.author_avatar_url,
+                author_username=course.author_username,
+                author_role=course.author_role,
+                num_of_terms=course.num_of_terms,
+            )
 
-            return {"course": course, "questions": questions}
+            return DTOCourseTestOutput(course=course_dto, questions=questions)
         except Exception as e:
             raise Exception("Không thể tạo tính năng học", e)
 
@@ -114,16 +145,28 @@ class CourseService:
             response = self.get_course_detail_by_id(course_id)
             course = response.get("course")
             course_detail = response.get("course_detail")
-            course_detail_random = random.sample(course_detail, 20)
-            questions = list(
+
+            num_of_questions = 20 if len(course_detail) >= 20 else len(course_detail)
+            course_detail_random: List[CourseDetailOutput] = random.sample(
+                course_detail, num_of_questions
+            )
+            questions: List[DTOTestQuestion] = list(
                 map(
-                    lambda current_course: self.create_question(
-                        current_course, course_detail_random
+                    lambda current_term: self.create_question(
+                        current_term, course_detail_random
                     ),
                     course_detail_random,
                 )
             )
-            return {"course": course, "questions": questions}
+            course_dto: DTOCourseOutput = DTOCourseOutput(
+                course_id=course.course_id,
+                course_name=course.course_name,
+                author_avatar_url=course.author_avatar_url,
+                author_username=course.author_username,
+                author_role=course.author_role,
+                num_of_terms=course.num_of_terms,
+            )
+            return DTOCourseTestOutput(course=course_dto, questions=questions)
         except Exception as e:
             raise Exception("Không thể tạo tính năng kiểm tra", e)
 

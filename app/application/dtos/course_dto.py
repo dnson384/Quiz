@@ -11,15 +11,12 @@ class DTOCourseOutput(BaseModel):
     author_role: str
     num_of_terms: int
 
-    model_config = ConfigDict(from_attributes=True)
-
 
 class DTOCourseDetailOutput(BaseModel):
     course_detail_id: UUID
     term: str
     definition: str
 
-    model_config = ConfigDict(from_attributes=True)
 
 class DTOCourseWithDetails(TypedDict):
     course: DTOCourseOutput
@@ -35,14 +32,27 @@ class DTONewCourseDetailInput(BaseModel):
     term: str
     definition: str
 
+
+class DTOTestQuestion(BaseModel):
+    question: DTOCourseDetailOutput
+    options: List[DTOCourseDetailOutput]
+
+
+class DTOCourseTestOutput(BaseModel):
+    course: DTOCourseOutput
+    questions: List[DTOTestQuestion]
+
+
 # Sửa
 class DTOUpdateCourseInput(BaseModel):
     course_name: str
+
 
 class DTOUpdateCourseDetailInput(BaseModel):
     course_detail_id: UUID | None
     term: str
     definition: str
+
 
 class DTOUpdateCourseRequest(BaseModel):
     course: Optional[DTOUpdateCourseInput] = None

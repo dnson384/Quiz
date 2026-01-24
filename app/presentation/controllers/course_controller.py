@@ -75,8 +75,8 @@ class CourseController:
     def get_course_learn_by_id(self, course_id: str):
         try:
             response = self.service.get_course_learn_by_id(course_id)
-            course = response.get("course")
-            questions = response.get("questions")
+            course = response.course
+            questions = response.questions
             course_res = CourseOutput(
                 course_id=course.course_id,
                 course_name=course.course_name,
@@ -89,8 +89,8 @@ class CourseController:
             for question in questions:
                 questions_res.append(
                     LearnQuestionOutput(
-                        question=question.get("question"),
-                        options=question.get("options"),
+                        question=question.question,
+                        options=question.options,
                     )
                 )
             return CourseQuestionOutput(course=course_res, questions=questions_res)
@@ -102,8 +102,8 @@ class CourseController:
     def get_course_test_by_id(self, course_id: str):
         try:
             response = self.service.get_course_test_by_id(course_id)
-            course = response.get("course")
-            questions = response.get("questions")
+            course = response.course
+            questions = response.questions
             course_res = CourseOutput(
                 course_id=course.course_id,
                 course_name=course.course_name,
@@ -116,8 +116,8 @@ class CourseController:
             for question in questions:
                 questions_res.append(
                     LearnQuestionOutput(
-                        question=question.get("question"),
-                        options=question.get("options"),
+                        question=question.question,
+                        options=question.options,
                     )
                 )
             return CourseQuestionOutput(course=course_res, questions=questions_res)

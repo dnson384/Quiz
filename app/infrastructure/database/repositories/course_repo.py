@@ -221,6 +221,7 @@ class CoursesRepository(ICourseRepository):
                 CourseDetailModel.definition,
             )
             .filter(CourseDetailModel.course_id == course_id)
+            .order_by(CourseDetailModel.course_detail_id.asc())
             .all()
         )
 
