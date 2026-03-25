@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+body {
+  background: #f8f8ff;
+}
+
+/* Brand Primary */
+/* 100 */
+.text-brand-primary-100 {
+  color: #d9f8f1;
+}
+.bg-brand-primary-100 {
+  background: #d9f8f1;
+}
+/* 200 */
+.text-brand-primary-200 {
+  color: #b6f1e8;
+}
+.bg-brand-primary-200 {
+  background: #b6f1e8;
+}
+/* 500 */
+.text-brand-primary-500 {
+  color: #2e7077;
+}
+.bg-brand-primary-500 {
+  background: #2e7077;
+}
+/* 600 */
+.text-brand-primary-600 {
+  color: #215a66;
+}
+.bg-brand-primary-600 {
+  background: #215a66;
+}
+
+/* Brand Secondary */
+/* 100 */
+.text-brand-secondary-100 {
+  color: #feeee2;
+}
+.bg-brand-secondary-100 {
+  background: #feeee2;
+}
+/* 500 */
+.text-brand-secondary-500 {
+  color: #f67c6f;
+}
+.bg-brand-secondary-500 {
+  background: #f67c6f;
+}
+
+/* Background */
+.bg-primary {
+  background: #faf9f6;
+}
+.bg-card {
+  background: #fafafa;
+}
+
+/*
+Source - https://stackoverflow.com/a
+Posted by swehren, modified by community. See post 'Timeline' for change history
+Retrieved 2025-11-27, License - CC BY-SA 3.0
+*/
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #6366f1;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
