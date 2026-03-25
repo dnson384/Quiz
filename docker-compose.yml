@@ -9,6 +9,7 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
@@ -17,6 +18,7 @@ services:
 
   backend:
     build: ./server
+    image: doannhuson2004/quiz-backend:latest
     ports:
       - "8000:8000"
     depends_on:
@@ -32,6 +34,7 @@ services:
 
   frontend:
     build: ./ui
+    image: doannhuson2004/quiz-frontend:latest
     ports:
       - "3000:3000"
     depends_on:
