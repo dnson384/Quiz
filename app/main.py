@@ -1,7 +1,6 @@
 import os
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-# from fastapi.middleware.cors import CORSMiddleware
 
 from app.infrastructure.database.connection import engine, Base
 
@@ -20,15 +19,6 @@ PUBLIC_DIR_PATH = os.path.join(BASE_DIR, "public")
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["GET", "POST"],
-#     allow_headers=["Content-Type", "Authorization"],
-# )
-
 
 @app.get("/")
 def read_root():
