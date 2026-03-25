@@ -1,6 +1,6 @@
 "use client";
 import { User } from "@/domain/entities/User";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import {
   getAllUsers,
   grantAdmin,
@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 export default function useDashboardAdmin() {
   const { user } = useAuthContext();
   const [users, setUsers] = useState<User[]>();
-  const router = useRouter()
+  const router = useRouter();
 
   const grantAdminRole = async (id: string) => {
     if (confirm("Chắc chưa?")) {
@@ -60,9 +60,9 @@ export default function useDashboardAdmin() {
 
   useEffect(() => {
     if (user && user.role !== "ADMIN") {
-      router.replace("/dashboard")
+      router.replace("/dashboard");
     }
-  }, [user])
+  }, [user]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +77,7 @@ export default function useDashboardAdmin() {
           role: user.role,
           avatarUrl: user.avatarUrl,
           isActived: user.isActived,
-        }))
+        })),
       );
     };
     fetchData();

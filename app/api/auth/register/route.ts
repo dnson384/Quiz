@@ -1,6 +1,6 @@
-import { RegisterRequest } from "@/application/dtos/auth/registerRequest";
-import { RegisterUserEmailUsecase } from "@/application/usecases/auth/registerUserEmail";
-import { AuthRepositoryImpl } from "@/infrastructure/repositories/AuthRepositoryImpl";
+import { RegisterRequest } from "@/application/dtos/auth/registerRequest.dto";
+import { RegisterUserEmailUsecase } from "@/application/usecases/auth/registerUserEmail.usecase";
+import { AuthRepositoryImpl } from "@/infrastructure/repositories/auth.repository";
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     if (err instanceof Error) {
@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { detail: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

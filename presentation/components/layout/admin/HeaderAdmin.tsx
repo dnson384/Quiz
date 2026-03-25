@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import useNavigationBarAdmin from "@/presentation/hooks/layout/admin/useHeaderAdmin";
+import useNavigationBarAdmin from "@/presentation/hooks/Layout/Admin/useHeaderAdmin";
 import useAuth from "@/presentation/hooks/Auth/useAuth";
 
 export default function HeaderAdmin() {

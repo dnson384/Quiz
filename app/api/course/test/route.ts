@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
-import { GetCourseTestUsecase } from "@/application/usecases/course/getCourseTest";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
+import { GetCourseTestUsecase } from "@/application/usecases/course/getCourseTest.usecase";
 
 export async function GET(req: NextRequest) {
   try {
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     const repo = new CourseRepositoryImpl();
     const usecase = new GetCourseTestUsecase(repo);
     const courseTest = await usecase.execute(courseId);
-    
+
     return NextResponse.json(courseTest, { status: 200 });
   } catch (err: unknown) {
     console.error("Lỗi API:", err);
@@ -21,12 +21,12 @@ export async function GET(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -8,7 +8,7 @@ interface Data {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     questionIndex: number,
     optionIndex: number | null,
-    questionType: string | null
+    questionType: string | null,
   ) => void;
 }
 
@@ -38,7 +38,7 @@ export default function TrueFalse({
                       e,
                       questionIndex,
                       optionIndex,
-                      question.questionBase.type
+                      question.questionBase.type,
                     )
                   }
                 />

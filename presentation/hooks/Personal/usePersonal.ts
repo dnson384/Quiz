@@ -1,6 +1,6 @@
 "use client";
 import { UpdateUser } from "@/domain/entities/User";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import {
   updateMe,
   uploadTempAvatar,
@@ -37,7 +37,7 @@ export default function usePersonal() {
   };
 
   const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
+    event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const files = event.target.files;
     if (!files || files.length === 0) return;
@@ -69,7 +69,7 @@ export default function usePersonal() {
 
   // Input Change
   const handleFieldChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const target = event.target;
     const { name, value } = target;

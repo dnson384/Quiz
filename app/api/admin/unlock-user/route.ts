@@ -1,5 +1,5 @@
-import { UnLockUserUsecase } from "@/application/usecases/admin/unLockUser";
-import { AdminRepositoryImpl } from "@/infrastructure/repositories/AdminRepositoryImpl";
+import { UnLockUserUsecase } from "@/application/usecases/admin/unLockUser.usecase";
+import { AdminRepositoryImpl } from "@/infrastructure/repositories/admin.repository";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest) {
@@ -13,7 +13,7 @@ export async function PUT(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Missing access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 

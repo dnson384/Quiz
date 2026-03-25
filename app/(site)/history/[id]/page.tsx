@@ -1,7 +1,7 @@
 "use client";
 import useHistory from "@/presentation/hooks/History/useHistory";
-import TestScoreChart from "@/presentation/components/common/testScoreChart";
-import AnsweredCard from "@/presentation/components/History/answeredCard";
+import TestScoreChart from "@/presentation/components/Common/TestScoreChart";
+import AnsweredCard from "@/presentation/components/History/AnsweredCard";
 
 export default function History() {
   const { result, baseInfo, histories, handleClose, handleSidebarClick } =
@@ -73,7 +73,9 @@ export default function History() {
                   if (correctAnswer.length != selectedId.length) {
                     isCorrect = false;
                   } else {
-                    isCorrect = !selectedId.some(id => !correctAnswer.includes(id))
+                    isCorrect = !selectedId.some(
+                      (id) => !correctAnswer.includes(id),
+                    );
                   }
 
                   return (

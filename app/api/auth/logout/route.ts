@@ -1,5 +1,5 @@
-import { LogoutUsecase } from "@/application/usecases/auth/logoutUser";
-import { AuthRepositoryImpl } from "@/infrastructure/repositories/AuthRepositoryImpl";
+import { LogoutUsecase } from "@/application/usecases/auth/logoutUser.usecase";
+import { AuthRepositoryImpl } from "@/infrastructure/repositories/auth.repository";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 

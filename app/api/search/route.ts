@@ -1,5 +1,5 @@
-import { SearchByKeywordUsecase } from "@/application/usecases/search/searchByKeyword";
-import { SearchRepositoryImpl } from "@/infrastructure/repositories/SearchRepositoryImpl";
+import { SearchByKeywordUsecase } from "@/application/usecases/search/searchByKeyword.usecase";
+import { SearchRepositoryImpl } from "@/infrastructure/repositories/search.repository";
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 

@@ -1,6 +1,6 @@
 "use client";
-import HeaderAdmin from "@/presentation/components/layout/admin/HeaderAdmin";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import HeaderAdmin from "@/presentation/components/Layout/Admin/HeaderAdmin";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useDashboardAdmin from "@/presentation/hooks/Dashboard/useDashboardAdmin";
 
 export default function DashboardAdmin() {

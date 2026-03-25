@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { GetCourseLearnUsecase } from "@/application/usecases/course/getCourseLearn";
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
+import { GetCourseLearnUsecase } from "@/application/usecases/course/getCourseLearn.usecase";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
 
 export async function GET(req: NextRequest) {
   try {
@@ -23,12 +23,12 @@ export async function GET(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

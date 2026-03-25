@@ -1,5 +1,4 @@
 "use client";
-import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Image from "next/image";
@@ -9,18 +8,12 @@ import test_default_page from "../../public/default_page/test_default_page.png";
 import card_matching_default_page from "../../public/default_page/card_matching_default_page.png";
 import teacher_default_page from "../../public/default_page/teacher_default_page.png";
 
-import { useAuthStore, useRoleStore } from "@/presentation/store/authStore";
+import { useAuthStore, useRoleStore } from "@/presentation/store/auth.store";
 
 export default function Home() {
-  const [isFocused, setIsFocused] = useState(false);
-  const inputRef = useRef<HTMLInputElement | null>(null);
   const router = useRouter();
   const setAuthMethod = useAuthStore((state) => state.setAuthMethod);
   const setRole = useRoleStore((state) => state.setRole);
-
-  const handleSearchInputFocus = () => {
-    inputRef.current?.focus();
-  };
 
   const authNavigator = (method: string) => {
     setAuthMethod(method);

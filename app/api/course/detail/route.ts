@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { GetCourseDetailUsecase } from "@/application/usecases/course/getCourseDetail";
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
+import { GetCourseDetailUsecase } from "@/application/usecases/course/getCourseDetail.usecase";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
 export async function GET(req: NextRequest) {
   try {
     const params = req.nextUrl.searchParams;
@@ -21,18 +21,18 @@ export async function GET(req: NextRequest) {
       if (err.status === 422) {
         return NextResponse.json(
           { detail: "course_id không hợp lệ" },
-          { status: err.response.status }
+          { status: err.response.status },
         );
       }
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
     }
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

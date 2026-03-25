@@ -8,7 +8,7 @@ import {
   PracticeTest,
 } from "@/domain/entities/PracticeTest";
 
-import { generateSlug } from "@/presentation/utils/textFormatter";
+import { generateSlug } from "@/presentation/utils/textFormatter.util";
 import {
   getPracticeTestRandomDetail,
   submitPracticeTest,
@@ -29,7 +29,7 @@ export default function useTakePracticeTest() {
   const handleOptionSelected = (
     questionIndex: number,
     questionType: string,
-    optionId: string
+    optionId: string,
   ) => {
     setAnsweredQuestions((prev) => {
       const newAnsweredOptions = { ...prev };
@@ -40,7 +40,7 @@ export default function useTakePracticeTest() {
         const curRawQuestion = questions?.find(
           (question) =>
             question.question.id ===
-            newAnsweredOptions[questionIndex].questionId
+            newAnsweredOptions[questionIndex].questionId,
         );
         if (!curRawQuestion) return prev;
         const correctAnswersId = curRawQuestion.options
@@ -64,7 +64,7 @@ export default function useTakePracticeTest() {
             newIsCorrect = false;
           } else {
             newIsCorrect = !newOptions.some(
-              (id) => !correctAnswersId.includes(id)
+              (id) => !correctAnswersId.includes(id),
             );
           }
         } else {
@@ -86,7 +86,7 @@ export default function useTakePracticeTest() {
     const questionsCount = questions?.length;
     const score = Object.values(answeredQuestions).reduce(
       (total, opt) => (total += opt.isCorrect ? 1 : 0),
-      0
+      0,
     );
     if (!practiceTestId || !questionsCount) return;
 
@@ -94,7 +94,7 @@ export default function useTakePracticeTest() {
       practiceTestId,
       answeredQuestions,
       questionsCount,
-      score
+      score,
     );
     if (resultId) {
       router.replace(`/history/${practiceTestId}?rid=${resultId}`);
@@ -127,7 +127,7 @@ export default function useTakePracticeTest() {
 
       const data: PracticeTestDetail = await getPracticeTestRandomDetail(
         practiceTestId,
-        questionsCount ? Number(questionsCount) : undefined
+        questionsCount ? Number(questionsCount) : undefined,
       );
 
       if (data) {

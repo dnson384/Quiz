@@ -1,10 +1,10 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useSearch from "@/presentation/hooks/Search/useSearch";
-import AllResult from "./all_result";
-import CourseResult from "./coure_result";
-import PracticeTestResult from "./practice_test_result";
+import AllResult from "../../../presentation/components/Search/AllResult";
+import CourseResult from "../../../presentation/components/Search/CoureResult";
+import PracticeTestResult from "../../../presentation/components/Search/PracticeTestResult";
 
 export default function Search() {
   const {
@@ -22,7 +22,7 @@ export default function Search() {
   return (
     <>
       <Header />
-      <div className="flex mt-[74px]">
+      <div className="flex">
         <SideMenu />
 
         {isLoading ? (
@@ -30,7 +30,7 @@ export default function Search() {
             <div className="loader"></div>
           </div>
         ) : (
-          <section className="mx-auto mt-3 flex flex-col gap-8 px-5 sm:p-0">
+          <section className="mx-auto mt-[74px] flex flex-col gap-8 px-5 sm:p-0">
             <>
               <h2 className="text-2xl font-bold">Kết quả cho "{keyword}"</h2>
               <div className="relative w-full border-b border-gray-300">

@@ -1,6 +1,6 @@
 import { Course } from "@/domain/entities/Course";
 import { PracticeTest } from "@/domain/entities/PracticeTest";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import { getUserCoures } from "@/presentation/services/course.service";
 import { getUserPracticeTest } from "@/presentation/services/practice_test.service";
 import { usePathname, useRouter } from "next/navigation";

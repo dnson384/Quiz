@@ -1,12 +1,12 @@
 import "./globals.css";
 import { Quicksand } from "next/font/google";
-import AuthProvider from "@/presentation/context/authContext";
-import { MenuProvider } from "@/presentation/context/menuContext";
+import AuthProvider from "@/presentation/context/auth.context";
+import { MenuProvider } from "@/presentation/context/menu.context";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"], // Chỉ định các trọng số bạn cần
-  variable: "--font-quicksand", // Đặt tên biến CSS
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-quicksand",
 });
 
 export default function RootLayout({
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <body className={quicksand.className}>
         <AuthProvider>
           <MenuProvider>{children}</MenuProvider>

@@ -1,12 +1,12 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 
-import SingleChoice from "./singleChoice";
-import MultipleChoice from "./multipleChoice";
+import SingleChoice from "../../../../presentation/components/MyLib/PracticeTest/SingleChoice";
+import MultipleChoice from "../../../../presentation/components/MyLib/PracticeTest/MultipleChoice";
 
 import useMyPractice from "@/presentation/hooks/MyLib/useUserPracticeTest";
-import TrueFalse from "./trueFalse";
+import TrueFalse from "../../../../presentation/components/MyLib/PracticeTest/TrueFalse";
 
 export default function MyPracticeTest() {
   const {
@@ -32,16 +32,19 @@ export default function MyPracticeTest() {
     handleDeletePracticeTest,
   } = useMyPractice();
 
-  const titleMissing = changedName?.name.length === 0;
+  const titleMissing =
+    changedName === undefined ||
+    changedName.name.length === 0 ||
+    changedName.name === baseInfo?.name;
   const anyMissing = changedQuestions.some((changeQuestion) => {
     if (changeQuestion.question?.text.length === 0) return true;
     const isOptionTextMissing = changeQuestion.options.some(
-      (changeOption) => changeOption.text.length === 0
+      (changeOption) => changeOption.text.length === 0,
     );
     if (isOptionTextMissing) return true;
 
     const hasAnswerOption = changeQuestion.options.some(
-      (option) => option.isCorrect === true
+      (option) => option.isCorrect === true,
     );
     if (!hasAnswerOption) return true;
   });
@@ -53,7 +56,7 @@ export default function MyPracticeTest() {
 
       <main className="flex">
         <SideMenu />
-        <section className="w-6xl mx-auto">
+        <section className="mt-[74px] w-6xl mx-auto">
           <div className="sticky z-10 top-0 py-4 bg-[#F8F8FF]">
             <div className="w-6xl class flex justify-between items-center">
               <h1 className="font-bold text-2xl">{baseInfo?.name}</h1>
@@ -87,7 +90,7 @@ export default function MyPracticeTest() {
           </div>
 
           {/* Thông tin chung */}
-          <form className="">
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="mb-5">
               <h3>Tiêu đề</h3>
               <input
@@ -118,7 +121,7 @@ export default function MyPracticeTest() {
                     if (changedQuestion.id)
                       return changedQuestion.id === question.id;
                     return changedQuestion.tempId === question.tempId;
-                  }
+                  },
                 )?.question?.type;
                 const questionType =
                   changeQuestionType || question.question?.type;
@@ -134,7 +137,7 @@ export default function MyPracticeTest() {
                       return changeQuestion.id === question.id;
                     }
                     return changeQuestion.tempId === question.tempId;
-                  }
+                  },
                 );
 
                 if (changedQuestion) {
@@ -142,10 +145,10 @@ export default function MyPracticeTest() {
                   isMissingQuestionBase = questionText.trim().length === 0;
                   showError = isMissingQuestionBase && isSubmitted;
                   isMissingOptionText = changedQuestion.options.some(
-                    (option) => option.text.trim() === ""
+                    (option) => option.text.trim() === "",
                   );
                   hasCorrectAnswer = changedQuestion.options.some(
-                    (option) => option.isCorrect === true
+                    (option) => option.isCorrect === true,
                   );
                 }
 
@@ -174,7 +177,7 @@ export default function MyPracticeTest() {
                                 e,
                                 questionIndex,
                                 question.question.type,
-                                null
+                                null,
                               );
                             }
                           }}
@@ -224,7 +227,7 @@ export default function MyPracticeTest() {
                                 e,
                                 questionIndex,
                                 question.question.type,
-                                null
+                                null,
                               );
                             }
                           }}

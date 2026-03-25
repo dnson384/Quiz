@@ -1,14 +1,14 @@
 "use client";
-import { usePracticeTestResult } from "@/presentation/store/practiceTestStore";
+import { usePracticeTestResult } from "@/presentation/store/practiceTest.store";
 
 import useTakePracticeTest from "@/presentation/hooks/PracticeTest/useTakePracticeTest";
 
-import TestScoreChart from "@/presentation/components/common/testScoreChart";
-import PracticeTestAnswerResult from "@/presentation/components/PracticeTest/practiceTestResult";
+import TestScoreChart from "@/presentation/components/Common/TestScoreChart";
+import PracticeTestAnswerResult from "@/presentation/components/PracticeTest/PracticeTestResult";
 
 export default function PracticeTestResult() {
   const practiceTestResult = usePracticeTestResult(
-    (state) => state.practiceTestResult
+    (state) => state.practiceTestResult,
   );
   const { score, baseInfo, shuffleQuestions, selectedOptions } =
     practiceTestResult;

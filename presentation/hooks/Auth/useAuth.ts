@@ -6,8 +6,8 @@ import { login, logout, register } from "@/presentation/services/auth.service";
 import {
   validateLogin,
   validateRegister,
-} from "@/presentation/utils/authValidation";
-import { useAuthStore } from "@/presentation/store/authStore";
+} from "@/presentation/utils/authValidation.util";
+import { useAuthStore } from "@/presentation/store/auth.store";
 
 export default function useAuth() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export default function useAuth() {
   };
 
   const handleSubmitLoginForm = async (
-    event: React.MouseEvent<HTMLFormElement>
+    event: React.MouseEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
 
@@ -66,7 +66,7 @@ export default function useAuth() {
   };
 
   const handleSubmitRegisterForm = async (
-    event: React.MouseEvent<HTMLFormElement>
+    event: React.MouseEvent<HTMLFormElement>,
   ) => {
     event.preventDefault();
     if (!acceptTerm) {

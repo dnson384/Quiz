@@ -1,5 +1,5 @@
-import { UploadAvatarUsecase } from "@/application/usecases/user/uploadAvatar";
-import { UserRepositoryImpl } from "@/infrastructure/repositories/UserRepositoryImpl";
+import { UploadAvatarUsecase } from "@/application/usecases/user/uploadAvatar.usecase";
+import { UserRepositoryImpl } from "@/infrastructure/repositories/user.repository";
 import { NextRequest, NextResponse } from "next/server";
 import { isAxiosError } from "axios";
 
@@ -14,12 +14,12 @@ export async function POST(req: NextRequest) {
     if (isAxiosError(err)) {
       return NextResponse.json(
         { detail: err.response?.data.detail },
-        { status: err.status }
+        { status: err.status },
       );
     }
     return NextResponse.json(
       { detail: "An error occurred while fetching token" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

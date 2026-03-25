@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const REAL_BACKEND_URL =
-  process.env.NEXT_PUBLIC_BACKEND_URL!;
+const BACKEND_URL =
+  process.env.BACKEND_URL!;
+
+const BACKEND_URL_STATIC = BACKEND_URL.replace(/\/api$/, "");
 
 export async function GET(
   req: NextRequest,
@@ -10,7 +12,7 @@ export async function GET(
   try {
     const slug = (await params).slug.join("/");
 
-    const imageUrl = `${REAL_BACKEND_URL}/${slug}`;
+    const imageUrl = `${BACKEND_URL_STATIC}/${slug}`;
 
     const imageResponse = await fetch(imageUrl, {
       cache: "no-store",

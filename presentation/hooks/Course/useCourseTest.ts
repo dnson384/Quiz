@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTestResult } from "../../store/courseTestStore";
+import { useTestResult } from "../../store/courseTest.store";
 
 import useFlashcard from "./useCourseFlashcard";
 import { getCourseTestQuestions } from "@/presentation/services/course.service";
 
 import { Course, Term, TestQuestion } from "@/domain/entities/Course";
-import { shuffleArray } from "@/presentation/utils/arrayHelpers";
+import { shuffleArray } from "@/presentation/utils/arrayHelpers.util";
 
 interface OptionSelectedData {
   optionId: string;
@@ -30,7 +30,7 @@ export default function useCourseTest() {
     Term[][]
   >([]);
   const [selectedOption, setSelectedOption] = useState<QuestionSelectedData>(
-    {}
+    {},
   );
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function useCourseTest() {
 
   useEffect(() => {
     const shuffledQuestions = questions?.map((ques) =>
-      shuffleArray([ques.question, ...ques.options])
+      shuffleArray([ques.question, ...ques.options]),
     );
     if (shuffledQuestions) {
       setShuffledQuestionsOptions(shuffledQuestions);
@@ -63,7 +63,7 @@ export default function useCourseTest() {
   const handleOptionSelected = (
     questionIndex: number,
     option_id: string,
-    correct_id: string
+    correct_id: string,
   ) => {
     if (
       selectedOption[questionIndex] &&
@@ -96,7 +96,7 @@ export default function useCourseTest() {
       baseInfo,
       questions,
       shuffledQuestionsOptions,
-      selectedOption
+      selectedOption,
     );
     router.push(`/course/test/result?uuid=${courseId}`);
   };

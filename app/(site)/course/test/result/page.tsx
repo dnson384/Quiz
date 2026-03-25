@@ -1,10 +1,10 @@
 "use client";
-import { useTestResult } from "@/presentation/store/courseTestStore";
+import { useTestResult } from "@/presentation/store/courseTest.store";
 import useCourseTest from "@/presentation/hooks/Course/useCourseTest";
 
-import TestQuestionResult from "@/presentation/components/Course/testQuestionResult";
-import LearnMethodDropdown from "@/presentation/components/layout/learn_method_dropdown";
-import TestScoreChart from "@/presentation/components/common/testScoreChart";
+import TestQuestionResult from "@/presentation/components/Course/TestQuestionResult";
+import LearnMethodDropdown from "@/presentation/components/Layout/LearnMethodDropdown";
+import TestScoreChart from "@/presentation/components/Common/TestScoreChart";
 
 export default function TestResult() {
   const testResult = useTestResult((state) => state.testResult);

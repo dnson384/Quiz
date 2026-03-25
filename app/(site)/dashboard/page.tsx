@@ -1,9 +1,9 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useDashboard from "@/presentation/hooks/Dashboard/useDashboard";
-import CourseCard from "@/presentation/components/Course/courseCard";
-import PracticeTestCard from "@/presentation/components/PracticeTest/practiceTestCard";
+import CourseCard from "@/presentation/components/Course/CourseCard";
+import PracticeTestCard from "@/presentation/components/PracticeTest/PracticeTestCard";
 
 export default function Dashboard() {
   const { courseSample, practiceTestSample, role } = useDashboard();
@@ -13,10 +13,10 @@ export default function Dashboard() {
       {role !== "ADMIN" && (
         <>
           <Header />
-          <div className="flex mt-[74px]">
+          <div className="flex">
             <SideMenu />
 
-            <section className="mx-auto mt-3 flex flex-col gap-8 px-5 sm:p-0">
+            <section className="mt-[74px] mx-auto flex flex-col gap-8 px-5 sm:p-0">
               {courseSample.length > 0 && (
                 <div>
                   <h3 className="font-bold mb-5">Học phần đề xuất</h3>

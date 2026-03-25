@@ -1,6 +1,6 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 
 import useMyCourse from "@/presentation/hooks/MyLib/useMyCourse";
 export default function MyCourse() {
@@ -24,18 +24,22 @@ export default function MyCourse() {
     handleDeleteCourse,
   } = useMyCourse();
 
-  const titleMissing = changedName?.name.length === 0;
+  const titleMissing =
+    changedName === undefined ||
+    changedName.name.length === 0 ||
+    changedName.name === baseInfo?.name;
   const anyMissing = changedTerms.some((changedTerm) => {
     if (changedTerm.term.length === 0) return true;
     if (changedTerm.definition.length === 0) return true;
   });
-  const isFormValid = !titleMissing && !anyMissing && changedTerms.length > 0;
+  const isFormValid = !titleMissing && !anyMissing;
 
   return (
     <>
       <Header />
       <main className="flex">
         <SideMenu />
+        <div></div>
         {isLoading ? (
           <div className="w-full h-150 flex justify-center items-center">
             <span className="loader"></span>
@@ -67,7 +71,7 @@ export default function MyCourse() {
             </div>
 
             {/* Thông tin chung */}
-            <form className="">
+            <form onSubmit={(e) => e.preventDefault()}>
               <div className="mb-5">
                 <h3>Tiêu đề</h3>
                 <input

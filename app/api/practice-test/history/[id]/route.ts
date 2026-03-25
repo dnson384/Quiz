@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { PracticeTestRepositoryImpl } from "@/infrastructure/repositories/PracticeTestRepositoryImpl";
-import { GetResultHistoryUsecase } from "@/application/usecases/practiceTest/getResultHistory";
+import { PracticeTestRepositoryImpl } from "@/infrastructure/repositories/practiceTest.repository";
+import { GetResultHistoryUsecase } from "@/application/usecases/practiceTest/getResultHistory.usecase";
 
 export async function GET(req: NextRequest) {
   try {
@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Không có access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -27,7 +27,7 @@ export async function GET(req: NextRequest) {
     const histories = await useCase.execute(
       accessToken,
       resultId,
-      practiceTestId
+      practiceTestId,
     );
 
     return NextResponse.json(histories, { status: 200 });
@@ -37,12 +37,12 @@ export async function GET(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

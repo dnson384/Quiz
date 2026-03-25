@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import { generateSlug } from "@/presentation/utils/textFormatter";
+import { generateSlug } from "@/presentation/utils/textFormatter.util";
 
 export default function useCourseCard() {
   const router = useRouter();

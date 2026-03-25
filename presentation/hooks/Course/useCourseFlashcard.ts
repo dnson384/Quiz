@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import useCourseDetail from "./useCourseDetail";
-import { shuffleArray } from "@/presentation/utils/arrayHelpers";
-import { generateSlug } from "@/presentation/utils/textFormatter";
+import { shuffleArray } from "@/presentation/utils/arrayHelpers.util";
+import { generateSlug } from "@/presentation/utils/textFormatter.util";
 
 export default function useFlashcard() {
   const { courseDetail } = useCourseDetail();
@@ -54,7 +54,7 @@ export default function useFlashcard() {
         setCurrentIndex((prev) => prev + 1);
       }
     },
-    [canBack, currentIndex, totalTerms]
+    [canBack, currentIndex, totalTerms],
   );
 
   const handleClose = () => {

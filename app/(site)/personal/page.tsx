@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import Header from "@/presentation/components/layout/header";
-import HeaderAdmin from "@/presentation/components/layout/admin/HeaderAdmin";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import HeaderAdmin from "@/presentation/components/Layout/Admin/HeaderAdmin";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import usePersonal from "@/presentation/hooks/Personal/usePersonal";
 
 export default function Personal() {
@@ -15,7 +15,7 @@ export default function Personal() {
           {user.role === "ADMIN" ? <HeaderAdmin /> : <Header />}
           <div className="flex">
             <SideMenu />
-            <section className="w-6xl mx-auto flex flex-col gap-2">
+            <section className="mt-[74px] w-6xl mx-auto flex flex-col gap-2">
               <div className="mb-5 flex items-center justify-between">
                 <h3 className="text-2xl font-bold">Thông tin cá nhân</h3>
                 <button

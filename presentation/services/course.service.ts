@@ -29,7 +29,7 @@ export async function getCourseDetail(courseId: string) {
 }
 
 export async function getCourseLearnQuestions(
-  courseId: string
+  courseId: string,
 ): Promise<CourseLearn | null> {
   const response = await axios.get(`${base_url}/learn`, {
     params: {
@@ -40,7 +40,7 @@ export async function getCourseLearnQuestions(
 }
 
 export async function getCourseTestQuestions(
-  courseId: string
+  courseId: string,
 ): Promise<CourseTest | null> {
   const response = await axios.get(`${base_url}/test`, {
     params: {
@@ -57,7 +57,7 @@ export async function createNewCoures(newCourse: NewCourse) {
 export async function updateCourse(
   courseId: string,
   updateCourse: UpdateCourse,
-  deletedTerms: string[]
+  deletedTerms: string[],
 ) {
   const updateStatus = await axios.put(`${base_url}/update`, {
     id: courseId,

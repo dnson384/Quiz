@@ -1,9 +1,9 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useMyLib from "@/presentation/hooks/MyLib/useMylib";
-import CourseCard from "@/presentation/components/MyLib/CourseCard";
-import PracticeTestCard from "@/presentation/components/MyLib/PracticeTestCard";
+import CourseCard from "@/presentation/components/MyLib/Course/CourseCard";
+import PracticeTestCard from "@/presentation/components/MyLib/PracticeTest/PracticeTestCard";
 export default function MyPracticeTest() {
   const {
     courses,
@@ -18,10 +18,10 @@ export default function MyPracticeTest() {
   return (
     <>
       <Header />
-      <div className="flex mt-[74px]">
+      <div className="flex">
         <SideMenu />
 
-        <section className="w-md md:w-2xl lg:w-6xl mx-auto mt-3">
+        <section className="w-md md:w-2xl lg:w-6xl mx-auto mt-[74px]">
           <nav className="flex flex-col gap-8 mb-5">
             <h1 className="text-3xl font-bold">Thư viện của bạn</h1>
             <div className="flex gap-6">

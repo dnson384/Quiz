@@ -5,7 +5,7 @@ interface LearnQuestionParams {
   currentQuestionOptions: Term[];
   correctAnswer: Term;
   selectedOption: string | null;
-  questionsCount: number,
+  questionsCount: number;
   handleOptionSelected: (
     questionIndex: number,
     option_id: string,
@@ -27,7 +27,9 @@ export default function TestQuestion({
       <div className="mb-16">
         <div className="flex justify-between">
           <h4 className="text-sm font-bold text-gray-500 mb-6">Định nghĩa</h4>
-          <h3 className="text-sm text-gray-500">{questionIndex + 1}/{questionsCount}</h3>
+          <h3 className="text-sm text-gray-500">
+            {questionIndex + 1}/{questionsCount}
+          </h3>
         </div>
         <p className="text-xl font-semibold">{correctAnswer.term}</p>
       </div>

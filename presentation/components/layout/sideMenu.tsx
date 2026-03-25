@@ -1,9 +1,9 @@
 "use client";
-import { useAuthContext } from "@/presentation/context/authContext";
-import { useMenuContext } from "@/presentation/context/menuContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
+import { useMenuContext } from "@/presentation/context/menu.context";
 
-import useSideMenu from "@/presentation/hooks/layout/useSideMenu";
-import { useShowFullMenu } from "@/presentation/store/dashboard";
+import useSideMenu from "@/presentation/hooks/Layout/useSideMenu";
+import { useShowFullMenu } from "@/presentation/store/dashboard.store";
 
 export default function SideMenu() {
   const { showMenu } = useMenuContext();

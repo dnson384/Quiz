@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-import { useShowFullMenu } from "@/presentation/store/dashboard";
-import { useAuthContext } from "@/presentation/context/authContext";
-import { useMenuContext } from "@/presentation/context/menuContext";
+import { useShowFullMenu } from "@/presentation/store/dashboard.store";
+import { useAuthContext } from "@/presentation/context/auth.context";
+import { useMenuContext } from "@/presentation/context/menu.context";
 
 export default function useNavigationBar() {
   const pathname = usePathname();

@@ -8,7 +8,7 @@ import {
   UpdateOption,
   PracticeTestQuestions,
 } from "@/domain/entities/PracticeTest";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -60,7 +60,7 @@ export default function useMyPractice() {
   // Changed data
   const [changedName, setChangedName] = useState<UpdateBaseInfo>();
   const [changedQuestions, setChangedQuestions] = useState<UpdateQuestion[]>(
-    []
+    [],
   );
   const [deleteOptions, setDeleteOptions] = useState<DeleteOptionData[]>([]);
   const [deleteQuestions, setDeleteQuestions] = useState<string[]>([]);
@@ -72,7 +72,7 @@ export default function useMyPractice() {
   // Card Behavior
   const handleDeleteCard = (
     questionIndex: number,
-    questionId: string | null
+    questionId: string | null,
   ) => {
     setQuestions((prev) => {
       const newQuestions = [...prev];
@@ -114,7 +114,7 @@ export default function useMyPractice() {
       | React.ChangeEvent<HTMLSelectElement>,
     questionIndex: number,
     questionType: string,
-    optionIndex: number | null
+    optionIndex: number | null,
   ) => {
     setIsSubmitted(false);
     const target = event.target;
@@ -133,7 +133,7 @@ export default function useMyPractice() {
           } else {
             return changedQuestion.tempId === currentQuestion.tempId;
           }
-        }
+        },
       );
 
       if (curChangeQuestionIndex < 0) {
@@ -173,10 +173,10 @@ export default function useMyPractice() {
             ["SINGLE_CHOICE", "MULTIPLE_CHOICE"].includes(value)
           ) {
             questions[questionIndex].options.forEach(
-              (option) => (option.isCorrect = false)
+              (option) => (option.isCorrect = false),
             );
             newChangedQuestion[curChangeQuestionIndex].options.forEach(
-              (option) => (option.isCorrect = false)
+              (option) => (option.isCorrect = false),
             );
           }
           // SINGLE / MULTIPLE -> TRUE_FALSE
@@ -190,7 +190,7 @@ export default function useMyPractice() {
               if (!currentQuestion.id) return prev;
 
               const currentRawQuestion = rawQuestions.find(
-                (question) => question.question.id === currentQuestion.id
+                (question) => question.question.id === currentQuestion.id,
               );
 
               currentRawQuestion?.options.forEach((option) => {
@@ -219,7 +219,7 @@ export default function useMyPractice() {
                 tempId: option.tempId,
                 text: option.text,
                 isCorrect: option.isCorrect,
-              })
+              }),
             );
           }
           // TRUE_FALSE -> SINGLE / MULTIPLE
@@ -233,7 +233,7 @@ export default function useMyPractice() {
               if (!currentQuestion.id) return prev;
 
               const currentRawQuestion = rawQuestions.find(
-                (question) => question.question.id === currentQuestion.id
+                (question) => question.question.id === currentQuestion.id,
               );
 
               currentRawQuestion?.options.forEach((option) => {
@@ -258,7 +258,7 @@ export default function useMyPractice() {
                 tempId: option.tempId,
                 text: option.text,
                 isCorrect: option.isCorrect,
-              })
+              }),
             );
           }
         }
@@ -310,7 +310,7 @@ export default function useMyPractice() {
             newChangedQuestion[curChangeQuestionIndex].options.forEach(
               (option) => {
                 option.isCorrect = false;
-              }
+              },
             );
           }
 
@@ -359,7 +359,7 @@ export default function useMyPractice() {
     questionTempId?: string,
     newQuestionIndex?: number,
     optionTempId?: string,
-    newOptionIndex?: number
+    newOptionIndex?: number,
   ) => {
     // Phương án mới
     if (
@@ -373,7 +373,7 @@ export default function useMyPractice() {
         newQuestions[newQuestionIndex] = {
           ...newQuestions[newQuestionIndex],
           options: newQuestions[newQuestionIndex].options.filter(
-            (_, index) => index !== newOptionIndex
+            (_, index) => index !== newOptionIndex,
           ),
         };
         return newQuestions;
@@ -381,17 +381,17 @@ export default function useMyPractice() {
       setChangedQuestions((prev) => {
         const newQuestions = [...prev];
         const currentIndex = newQuestions.findIndex(
-          (question) => question.tempId === questionTempId
+          (question) => question.tempId === questionTempId,
         );
         if (currentIndex < 0) return prev;
         const currentOptionIndex = newQuestions[currentIndex].options.findIndex(
-          (option) => option.tempId === optionTempId
+          (option) => option.tempId === optionTempId,
         );
 
         newQuestions[currentIndex] = {
           ...newQuestions[currentIndex],
           options: newQuestions[currentIndex].options.filter(
-            (_, index) => index !== currentOptionIndex
+            (_, index) => index !== currentOptionIndex,
           ),
         };
         return newQuestions;
@@ -403,19 +403,19 @@ export default function useMyPractice() {
         const newQuestions = [...prev];
 
         const curIndex = newQuestions.findIndex(
-          (question) => question.id === questionId
+          (question) => question.id === questionId,
         );
         if (curIndex < 0) return prev;
 
         const curOptionIndex = newQuestions[curIndex].options.findIndex(
-          (option) => option.id === optionId
+          (option) => option.id === optionId,
         );
         if (curOptionIndex < 0) return prev;
 
         newQuestions[curIndex] = {
           ...newQuestions[curIndex],
           options: newQuestions[curIndex].options.filter(
-            (_, index) => index !== curOptionIndex
+            (_, index) => index !== curOptionIndex,
           ),
         };
         return newQuestions;
@@ -424,12 +424,12 @@ export default function useMyPractice() {
       setChangedQuestions((prev) => {
         const newChangedQuestions = [...prev];
         const curIndex = newChangedQuestions.findIndex(
-          (changedQuestion) => changedQuestion.id === questionId
+          (changedQuestion) => changedQuestion.id === questionId,
         );
         if (curIndex < 0) return prev;
 
         const curOptionIndex = newChangedQuestions[curIndex].options.findIndex(
-          (changedOption) => changedOption.id === optionId
+          (changedOption) => changedOption.id === optionId,
         );
         if (curOptionIndex < 0) return prev;
 
@@ -437,7 +437,7 @@ export default function useMyPractice() {
         newChangedQuestions[curIndex] = {
           ...newChangedQuestions[curIndex],
           options: newChangedQuestions[curIndex].options.filter(
-            (_, index) => index !== curOptionIndex
+            (_, index) => index !== curOptionIndex,
           ),
         };
         return newChangedQuestions;
@@ -466,7 +466,7 @@ export default function useMyPractice() {
     const questionsPayload: UpdateQuestion[] = changedQuestions.map(
       (changedQuestion) => {
         const rawQuestion = rawQuestions.find(
-          (raw) => raw.question.id === changedQuestion.id
+          (raw) => raw.question.id === changedQuestion.id,
         );
 
         // check question base
@@ -487,7 +487,7 @@ export default function useMyPractice() {
 
             // TRƯỜNG HỢP B: Option cũ (có ID) -> So sánh với bản gốc
             const rawOption = rawQuestion?.options.find(
-              (option) => option.id === changeOption.id
+              (option) => option.id === changeOption.id,
             );
 
             if (!rawOption) return true;
@@ -498,7 +498,7 @@ export default function useMyPractice() {
               changeOption.isCorrect !== rawOption.isCorrect;
 
             return isTextChanged || isCorrectChanged;
-          }
+          },
         );
 
         // Trả về cấu trúc chứa các options đã thay đổi
@@ -507,7 +507,7 @@ export default function useMyPractice() {
           question: isQuestionBaseChange ? changedQuestion.question : null,
           options: changedOptions,
         };
-      }
+      },
     );
 
     const updateStatus = await updatePracticetestService(practiceTestId, {
@@ -519,12 +519,12 @@ export default function useMyPractice() {
 
     const deleteOptionsStatus = await deleteOptionsService(
       practiceTestId,
-      deleteOptions
+      deleteOptions,
     );
 
     const deleteQuestionsStatus = await deleteQuestionsService(
       practiceTestId,
-      deleteQuestions
+      deleteQuestions,
     );
 
     if (updateStatus && deleteOptionsStatus && deleteQuestionsStatus) {
@@ -551,16 +551,15 @@ export default function useMyPractice() {
       const userPracticeTest = await getUserPracticeTest();
       if (
         !userPracticeTest.some(
-          (practiceTest) => practiceTest.id === practiceTestId
+          (practiceTest) => practiceTest.id === practiceTestId,
         )
       ) {
         router.push("/dashboard");
         return;
       }
 
-      const response: PracticeTestDetail = await getPracticeTestDetail(
-        practiceTestId
-      );
+      const response: PracticeTestDetail =
+        await getPracticeTestDetail(practiceTestId);
       if (response) {
         // set raw data
         setPracticeTestId(response.baseInfo.id);
@@ -580,7 +579,7 @@ export default function useMyPractice() {
               text: option.text,
               isCorrect: option.isCorrect,
             })),
-          }))
+          })),
         );
 
         setIsLoading(false);
@@ -611,6 +610,6 @@ export default function useMyPractice() {
     handleDeleteOption,
     // Save
     handleSaveChange,
-    handleDeletePracticeTest
+    handleDeletePracticeTest,
   };
 }

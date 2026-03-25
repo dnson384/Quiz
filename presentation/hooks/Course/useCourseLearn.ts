@@ -3,7 +3,7 @@ import { getCourseLearnQuestions } from "@/presentation/services/course.service"
 import { useSearchParams } from "next/navigation";
 import useFlashcard from "./useCourseFlashcard";
 import { Course, LearnQuestion, Term } from "@/domain/entities/Course";
-import { shuffleArray } from "@/presentation/utils/arrayHelpers";
+import { shuffleArray } from "@/presentation/utils/arrayHelpers.util";
 
 export default function useCourseLearn() {
   const searchParams = useSearchParams();
@@ -17,7 +17,7 @@ export default function useCourseLearn() {
 
   const [currentIndex, setcurrentIndex] = useState<number>(0);
   const [currentQuestionOptions, setCurrentQuestionOptions] = useState<Term[]>(
-    []
+    [],
   );
   const [incorrectAnswers, setIncorrectAnswers] = useState<LearnQuestion[]>([]);
 
@@ -92,7 +92,7 @@ export default function useCourseLearn() {
         setShowRetryPrompt(true);
       } else {
         setNotification(
-          "Chúc mừng! Bạn đã hoàn thành bài học với kết quả tuyệt đối."
+          "Chúc mừng! Bạn đã hoàn thành bài học với kết quả tuyệt đối.",
         );
       }
     }

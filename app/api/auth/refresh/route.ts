@@ -1,5 +1,5 @@
-import { RefreshAccessTokenUsecase } from "@/application/usecases/auth/refreshAccessToken";
-import { AuthRepositoryImpl } from "@/infrastructure/repositories/AuthRepositoryImpl";
+import { RefreshAccessTokenUsecase } from "@/application/usecases/auth/refreshAccessToken.usecase";
+import { AuthRepositoryImpl } from "@/infrastructure/repositories/auth.repository";
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   if (!refreshToken) {
     return NextResponse.json(
       { detail: "Không có refresh token" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
     if (isAxiosError(err) && err.status === 401) {
       const res = NextResponse.json(
         { detail: err.response?.data.detail },
-        { status: 401 }
+        { status: 401 },
       );
 
       res.cookies.delete("access_token");
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       { detail: "Lỗi server khi re-generate access token" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

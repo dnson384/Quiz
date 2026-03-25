@@ -8,7 +8,7 @@ interface PracticeTestQuestionData {
   handleOptionSelected: (
     questionIndex: number,
     optionId: string,
-    isCorrect: boolean
+    isCorrect: boolean,
   ) => void;
 }
 
@@ -35,7 +35,7 @@ export default function PracticeTestQuestion({
                   handleOptionSelected(
                     questionIndex,
                     option.id,
-                    option.isCorrect
+                    option.isCorrect,
                   )
                 }
               />

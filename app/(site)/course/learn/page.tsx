@@ -1,6 +1,6 @@
 "use client";
-import LearnMethodDropdown from "@/presentation/components/layout/learn_method_dropdown";
-import QuestionProgressBar from "@/presentation/components/Course/questionProgress";
+import LearnMethodDropdown from "@/presentation/components/Layout/LearnMethodDropdown";
+import QuestionProgressBar from "@/presentation/components/Course/QuestionProgress";
 
 import useCourseLearn from "@/presentation/hooks/Course/useCourseLearn";
 
@@ -184,10 +184,7 @@ export default function CourseDetailLearn() {
                     <div
                       key={option.id}
                       onClick={() =>
-                        handleOptionSelected(
-                          option.id!,
-                          correctAnwser!
-                        )
+                        handleOptionSelected(option.id!, correctAnwser!)
                       }
                       className={`flex items-center border rounded-md cursor-pointer mb-3 transition-all duration-200 ${containerStyle} ${
                         hasAnswered ? "pointer-events-none" : ""

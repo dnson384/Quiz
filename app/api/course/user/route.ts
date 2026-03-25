@@ -1,15 +1,15 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { GetUserCoursesUsecase } from "@/application/usecases/course/getUserCourse";
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
+import { GetUserCoursesUsecase } from "@/application/usecases/course/getUserCourse.usecase";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
 
 export async function GET(req: NextRequest) {
   const accessToken = req.cookies.get("access_token")?.value;
   if (!accessToken) {
     return NextResponse.json(
       { detail: "Không có access token" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -26,12 +26,12 @@ export async function GET(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

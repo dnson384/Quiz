@@ -1,6 +1,6 @@
 "use client";
-import LearnMethodDropdown from "@/presentation/components/layout/learn_method_dropdown";
-import TestQuestion from "@/presentation/components/Course/testQuestion";
+import LearnMethodDropdown from "@/presentation/components/Layout/LearnMethodDropdown";
+import TestQuestion from "@/presentation/components/Course/TestQuestion";
 
 import useCourseTest from "@/presentation/hooks/Course/useCourseTest";
 

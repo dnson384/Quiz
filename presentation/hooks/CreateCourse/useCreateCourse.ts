@@ -39,7 +39,7 @@ export default function useCreateCoures() {
 
   const handleTermChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     setIsSubmitted(false);
     const { name, value } = event.target;

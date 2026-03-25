@@ -1,10 +1,9 @@
 "use client";
-import Flashcard from "@/presentation/components/Course/flashcard";
-import LearnMethodDropdown from "@/presentation/components/layout/learn_method_dropdown";
+import Flashcard from "@/presentation/components/Course/Flashcard";
+import LearnMethodDropdown from "@/presentation/components/Layout/LearnMethodDropdown";
 
 import useFlashcard from "@/presentation/hooks/Course/useCourseFlashcard";
-import { isLatinText } from "@/presentation/utils/textFormatter";
-
+import { isLatinText } from "@/presentation/utils/textFormatter.util";
 
 export default function CourseDetailFlashCard() {
   const {

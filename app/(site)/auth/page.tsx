@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import auth_theme from "../../../public/auth_theme.png";
 import useAuth from "@/presentation/hooks/Auth/useAuth";
-import { useAuthStore, useRoleStore } from "@/presentation/store/authStore";
+import { useAuthStore, useRoleStore } from "@/presentation/store/auth.store";
 
 export default function Auth() {
   const {

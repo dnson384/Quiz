@@ -1,6 +1,6 @@
 "use client";
 import { ResultWithPracticeTest } from "@/domain/entities/Result";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import { getAllHistories } from "@/presentation/services/practice_test.service";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

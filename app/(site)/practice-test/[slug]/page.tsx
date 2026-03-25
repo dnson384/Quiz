@@ -2,8 +2,8 @@
 import Image from "next/image";
 import okAvatar from "../../../../public/avatar_icon/ok.jpg";
 
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 
 import usePracticeTestDetail from "@/presentation/hooks/PracticeTest/usePracticeTestDetail";
 
@@ -43,7 +43,7 @@ export default function PracticeTestDetail() {
           </div>
         )}
         {baseInfo && questions && (
-          <main className="mx-auto mb-5">
+          <main className="mx-auto mb-5 mt-[74px]">
             <section className="w-3xl flex flex-col gap-5">
               <div>
                 <h2 className="text-3xl font-bold mb-3">{baseInfo?.name}</h2>

@@ -51,7 +51,7 @@ export default function usePracticeTestDetail() {
 
     const practiceTestId = searchParams.get("uuid");
     router.push(
-      `/practice-test/test?uuid=${practiceTestId}&num_of_ques=${formData.num_of_ques}&timer=${formData.timer}`
+      `/practice-test/test?uuid=${practiceTestId}&num_of_ques=${formData.num_of_ques}&timer=${formData.timer}`,
     );
   };
 
@@ -61,9 +61,8 @@ export default function usePracticeTestDetail() {
       if (!practiceTestId) return;
 
       try {
-        const data: PracticeTestDetail = await getPracticeTestDetail(
-          practiceTestId
-        );
+        const data: PracticeTestDetail =
+          await getPracticeTestDetail(practiceTestId);
 
         if (data) {
           setBaseInfo(data.baseInfo);

@@ -1,6 +1,6 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useCreateCoures from "@/presentation/hooks/CreateCourse/useCreateCourse";
 export default function CreateCourse() {
   const {
@@ -52,9 +52,7 @@ export default function CreateCourse() {
                   d="M256 42.667c117.803 0 213.334 95.53 213.334 213.333S373.803 469.334 256 469.334S42.667 373.803 42.667 256S138.197 42.667 256 42.667m48.918 134.25L256 225.836l-48.917-48.917l-30.165 30.165L225.835 256l-48.917 48.918l30.165 30.165L256 286.166l48.918 48.917l30.165-30.165L286.166 256l48.917-48.917z"
                 />
               </svg>
-              <p className=" text-red-400 select-none">
-                {error}
-              </p>
+              <p className=" text-red-400 select-none">{error}</p>
             </div>
           </div>
         )}

@@ -1,12 +1,12 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
-import { DeleteTermsUsecase } from "@/application/usecases/course/deleteTerms";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
+import { DeleteTermsUsecase } from "@/application/usecases/course/deleteTerms.usecase";
 
 interface BodyData {
-  id: string,
-  deletedTerms: string[]
+  id: string;
+  deletedTerms: string[];
 }
 
 export async function DELETE(req: NextRequest) {
@@ -15,19 +15,18 @@ export async function DELETE(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Không có access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     const body: BodyData = await req.json();
-
 
     const repo = new CourseRepositoryImpl();
     const usecase = new DeleteTermsUsecase(repo);
     const deleteStatus = await usecase.execute(
       body.id,
       accessToken,
-      body.deletedTerms
+      body.deletedTerms,
     );
 
     return NextResponse.json(deleteStatus, { status: 200 });
@@ -37,12 +36,12 @@ export async function DELETE(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

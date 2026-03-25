@@ -1,5 +1,5 @@
-import { UpdateMeUsecase } from "@/application/usecases/user/updateMe";
-import { UserRepositoryImpl } from "@/infrastructure/repositories/UserRepositoryImpl";
+import { UpdateMeUsecase } from "@/application/usecases/user/updateMe.usecase";
+import { UserRepositoryImpl } from "@/infrastructure/repositories/user.repository";
 import { NextRequest, NextResponse } from "next/server";
 import { isAxiosError } from "axios";
 
@@ -9,7 +9,7 @@ export async function PUT(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Missing access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -23,12 +23,12 @@ export async function PUT(req: NextRequest) {
     if (isAxiosError(err)) {
       return NextResponse.json(
         { detail: err.response?.data.detail },
-        { status: err.status }
+        { status: err.status },
       );
     }
     return NextResponse.json(
       { detail: "An error occurred while update" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

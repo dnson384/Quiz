@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import useNavigationBar from "../../hooks/layout/useHeader";
+import useNavigationBar from "../../hooks/Layout/useHeader";
 import useAuth from "@/presentation/hooks/Auth/useAuth";
 
 export default function Header() {

@@ -1,8 +1,8 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { PracticeTestRepositoryImpl } from "@/infrastructure/repositories/PracticeTestRepositoryImpl";
-import { GetPracticeTestRandomDetailUsecase } from "@/application/usecases/practiceTest/getRandomDetail";
+import { PracticeTestRepositoryImpl } from "@/infrastructure/repositories/practiceTest.repository";
+import { GetPracticeTestRandomDetailUsecase } from "@/application/usecases/practiceTest/getRandomDetail.usecase";
 
 export async function GET(req: NextRequest) {
   try {
@@ -22,12 +22,12 @@ export async function GET(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

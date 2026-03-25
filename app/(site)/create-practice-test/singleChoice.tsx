@@ -9,7 +9,7 @@ interface Data {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     questionIndex: number,
     optionIndex: number | null,
-    questionType: string | null
+    questionType: string | null,
   ) => void;
   handleDeleteOption: (questionIndex: number, optionIndex: number) => void;
 }
@@ -48,7 +48,7 @@ export default function SingleChoice({
                         e,
                         questionIndex,
                         optionIndex,
-                        question.questionBase.type
+                        question.questionBase.type,
                       )
                     }
                   />
@@ -69,7 +69,7 @@ export default function SingleChoice({
                       e,
                       questionIndex,
                       optionIndex,
-                      question.questionBase.type
+                      question.questionBase.type,
                     )
                   }
                 />

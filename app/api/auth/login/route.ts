@@ -1,6 +1,6 @@
-import { LoginRequest } from "@/application/dtos/auth/loginRequest";
-import { LoginUserEmailUsecase } from "@/application/usecases/auth/loginUserEmail";
-import { AuthRepositoryImpl } from "@/infrastructure/repositories/AuthRepositoryImpl";
+import { LoginRequest } from "@/application/dtos/auth/loginRequest.dto";
+import { LoginUserEmailUsecase } from "@/application/usecases/auth/loginUserEmail.usecase";
+import { AuthRepositoryImpl } from "@/infrastructure/repositories/auth.repository";
 import { AxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
     if (!accessToken || !refreshToken) {
       return NextResponse.json(
         { detail: "Không nhận được token từ máy chủ backend" },
-        { status: 500 }
+        { status: 500 },
       );
     }
 

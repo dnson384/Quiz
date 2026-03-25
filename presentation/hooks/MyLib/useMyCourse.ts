@@ -7,7 +7,7 @@ import {
   UpdateCourse,
   UpdateTerm,
 } from "@/domain/entities/Course";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import {
   getUserCoures,
   getCourseDetail,
@@ -71,7 +71,7 @@ export default function useMyCourse() {
 
   const handleTermChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     setIsSubmitted(false);
 
@@ -129,7 +129,7 @@ export default function useMyCourse() {
       const id = baseInfo?.id;
       if (!id) return;
       if (await deleteCourse(id)) {
-        router.replace("/my-lib")
+        router.replace("/my-lib");
       }
     }
   };

@@ -1,6 +1,6 @@
 "use client";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import useCreatePracticeTest from "@/presentation/hooks/CreatePracticeTest/useCreatePracticeTest";
 
 import SingleChoice from "./singleChoice";
@@ -52,7 +52,7 @@ export default function CreateCourse() {
 
       <main className="flex">
         <SideMenu />
-        <section className="w-6xl mx-auto ">
+        <section className="mt-[74px] w-6xl mx-auto ">
           <div className="sticky top-0 py-4 bg-[#F8F8FF]">
             <div className="w-6xl class flex justify-between items-center">
               <h1 className="font-bold text-2xl">Tạo một bài kiểm tra mới </h1>
@@ -102,10 +102,10 @@ export default function CreateCourse() {
                 const showError = isMissingQuestionBase && isSubmitted;
 
                 const isMissingOptionText = question.options.some(
-                  (option) => option.text.trim() === ""
+                  (option) => option.text.trim() === "",
                 );
                 const hasCorrectAnswer = question.options.some(
-                  (option) => option.isCorrect === true
+                  (option) => option.isCorrect === true,
                 );
 
                 return (

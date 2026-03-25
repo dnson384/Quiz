@@ -1,5 +1,5 @@
-import { GrantAdminUsecase } from "@/application/usecases/admin/grantAdmin";
-import { AdminRepositoryImpl } from "@/infrastructure/repositories/AdminRepositoryImpl";
+import { GrantAdminUsecase } from "@/application/usecases/admin/grantAdmin.usecase";
+import { AdminRepositoryImpl } from "@/infrastructure/repositories/admin.repository";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest) {
@@ -13,7 +13,7 @@ export async function PUT(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Missing access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 

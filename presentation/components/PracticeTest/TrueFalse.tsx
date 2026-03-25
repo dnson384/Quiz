@@ -37,11 +37,7 @@ export default function TrueFalse({
                     : false
                 }
                 onChange={() =>
-                  handleOptionSelected(
-                    questionIndex,
-                    "TRUE_FALSE",
-                    option.id,
-                  )
+                  handleOptionSelected(questionIndex, "TRUE_FALSE", option.id)
                 }
               />
               <label

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { getRandomCourse } from "@/presentation/services/course.service";
 import { getRandomPracticeTest } from "@/presentation/services/practice_test.service";
-import { useAuthContext } from "@/presentation/context/authContext";
+import { useAuthContext } from "@/presentation/context/auth.context";
 import { useRouter } from "next/navigation";
 
 export default function useDashboard() {

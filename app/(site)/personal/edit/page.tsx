@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
 import usePersonal from "@/presentation/hooks/Personal/usePersonal";
-import HeaderAdmin from "@/presentation/components/layout/admin/HeaderAdmin";
+import HeaderAdmin from "@/presentation/components/Layout/Admin/HeaderAdmin";
 
 export default function Personal() {
   const {
@@ -39,7 +39,7 @@ export default function Personal() {
       {user && (
         <>
           {user.role === "ADMIN" ? <HeaderAdmin /> : <Header />}
-          <div className="flex">
+          <div className="mt-[74px]">
             <SideMenu />
             {error && (
               <div className="fixed inset-0 h-fit flex justify-center top-20">

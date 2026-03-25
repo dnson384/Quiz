@@ -2,14 +2,14 @@
 import { useEffect } from "react";
 import Image from "next/image";
 
-import Header from "@/presentation/components/layout/header";
-import SideMenu from "@/presentation/components/layout/sideMenu";
-import Flashcard from "@/presentation/components/Course/flashcard";
-import TermCard from "@/presentation/components/Course/termCard";
+import Header from "@/presentation/components/Layout/Header";
+import SideMenu from "@/presentation/components/Layout/SideMenu";
+import Flashcard from "@/presentation/components/Course/Flashcard";
+import TermCard from "@/presentation/components/Course/TermCard";
 
 import useCourseDetail from "@/presentation/hooks/Course/useCourseDetail";
 import useFlashcard from "@/presentation/hooks/Course/useCourseFlashcard";
-import { isLatinText } from "@/presentation/utils/textFormatter";
+import { isLatinText } from "@/presentation/utils/textFormatter.util";
 
 export default function CourseDetail() {
   const { error, courseDetail, handleLearnOptionClick } = useCourseDetail();
@@ -63,24 +63,6 @@ export default function CourseDetail() {
               {/* Tên học phần */}
               <article className="flex items-center justify-between">
                 <h2 className="text-3xl font-bold">{baseInfo.name}</h2>
-                <div className="w-fit flex gap-1 items-center px-3 py-2 bg-gray-100 rounded-full cursor-pointer select-none hover:bg-gray-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      fill="none"
-                      stroke="#4b5563"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m10.94 18.339l-3.43 2.548a1.71 1.71 0 0 1-2.76-1.23V6.35a3.735 3.735 0 0 1 3.87-3.597h6.76a3.74 3.74 0 0 1 3.87 3.597v13.309a1.708 1.708 0 0 1-2.76 1.229l-3.43-2.548a1.8 1.8 0 0 0-2.12 0"
-                    />
-                  </svg>
-                  <p className="text-sm text-gray-600 font-semibold">Lưu</p>
-                </div>
               </article>
 
               {/* Các tính năng học */}

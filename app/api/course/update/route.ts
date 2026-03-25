@@ -1,13 +1,13 @@
 import { isAxiosError } from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
-import { CourseRepositoryImpl } from "@/infrastructure/repositories/CourseRepositoryImpl";
-import { UpdateCourseUsecase } from "@/application/usecases/course/updateCourse";
+import { CourseRepositoryImpl } from "@/infrastructure/repositories/course.repository";
+import { UpdateCourseUsecase } from "@/application/usecases/course/updateCourse.usecase";
 import { UpdateCourse } from "@/domain/entities/Course";
 
 interface BodyData {
-  id: string,
-  updateCourse: UpdateCourse
+  id: string;
+  updateCourse: UpdateCourse;
 }
 
 export async function PUT(req: NextRequest) {
@@ -16,7 +16,7 @@ export async function PUT(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Không có access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest) {
     const updateStatus = await usecase.execute(
       body.id,
       accessToken,
-      body.updateCourse
+      body.updateCourse,
     );
 
     return NextResponse.json(updateStatus, { status: 200 });
@@ -37,12 +37,12 @@ export async function PUT(req: NextRequest) {
     if (isAxiosError(err) && err.response)
       return NextResponse.json(
         { detail: err.response.data.detail || "Lỗi từ Backend" },
-        { status: err.response.status }
+        { status: err.response.status },
       );
 
     return NextResponse.json(
       { detail: "Lỗi máy chủ nội bộ (Internal Server Error)" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

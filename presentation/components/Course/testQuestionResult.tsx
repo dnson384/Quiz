@@ -32,8 +32,7 @@ export default function TestQuestionResult({
         <div className="grid grid-cols-2 gap-x-4 gap-y-3 select-none">
           {currentQuestionOptions &&
             currentQuestionOptions.map((option) => {
-              const isCorrect =
-                option.id === correctAnswer.id;
+              const isCorrect = option.id === correctAnswer.id;
               const hasAnswer = selectedOption === option.id;
 
               let classStyle = "border-gray-200";

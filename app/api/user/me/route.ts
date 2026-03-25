@@ -1,7 +1,6 @@
-import { GetMeUsecase } from "@/application/usecases/user/getMe";
-import { UserRepositoryImpl } from "@/infrastructure/repositories/UserRepositoryImpl";
+import { GetMeUsecase } from "@/application/usecases/user/getMe.usecase";
+import { UserRepositoryImpl } from "@/infrastructure/repositories/user.repository";
 import { NextRequest, NextResponse } from "next/server";
-
 
 export async function GET(req: NextRequest) {
   try {
@@ -9,7 +8,7 @@ export async function GET(req: NextRequest) {
     if (!accessToken) {
       return NextResponse.json(
         { detail: "Missing access token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
@@ -22,7 +21,7 @@ export async function GET(req: NextRequest) {
     console.error(err);
     return NextResponse.json(
       { detail: "An error occurred while fetching token" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
